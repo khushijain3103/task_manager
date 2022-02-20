@@ -7,8 +7,6 @@ export const taskOperations = {
         const newTask = new tasks (id,name,date,desc , url,marked=false);
         this.tasksArray.push(newTask);
 
-        console.log("array" , this.tasksArray);
-
         return newTask;
     },
 
@@ -21,15 +19,10 @@ export const taskOperations = {
             }
         }
 
-        console.log(this.tasksArray);
-        
-
-        // this.tasksArray = this.tasksArray.filter((tasks)=>!tasks.marked)
 
     },
 
     countMarked(){
-    //    return this.tasksArray = this.tasksArray.filter((tasks)=>tasks.marked);
         var count = 0;
         for(var idx = 0 ; idx<this.tasksArray.length ; idx++)
         {

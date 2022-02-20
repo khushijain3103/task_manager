@@ -10,18 +10,14 @@ function eventbinder(){
 function deleteTask(){
 
     const allTasks = taskOperations.deleteTask();
-    // console.log(taskOperations.deleteTask());
-    while(taskOperations.tasksArray.length!=0)
-    {
-        console.log("hi");
-        taskOperations.tasksArray.pop();
-    }
     printTasks(allTasks);
 }
 
 function printTasks(allTasks)
 {
-    // taskOperations.tasksArray = " ";
+    const tBody  = document.querySelector('#body');
+    tBody.innerHTML = " ";
+    console.log(allTasks);
     for(var idx=0 ; idx<allTasks.length ; idx++)
     {
         printTask(allTasks[idx]);
@@ -38,7 +34,6 @@ function countOperations()
 
 function toggleDel()
 {
-    console.log("delete",this.getAttribute("task-id"));
     const icon = this;
     const id = this.getAttribute("task-id");
     const tr = icon.parentNode.parentNode;
@@ -58,12 +53,10 @@ function createIcon(className,fn, id){
     iTag.className = ` ${className} me-3 hand`;
     iTag.addEventListener('click',fn);
     iTag.setAttribute("task-id",id);
-    console.log(iTag);
     return iTag;
 }
 
 function add(){
-    console.log ("add function called");
     var id = document.querySelector('#id').value;
     var name = document.querySelector('#name').value;
     var date = document.querySelector('#date').value;
@@ -71,7 +64,6 @@ function add(){
     var url = document.querySelector('#url').value;
 
     const task = taskOperations.addTask(id,name,date,desc,url);
-    console.log(task);
 
     printTask(task);
     countOperations();
@@ -82,7 +74,6 @@ function printTask(task){
     const tBody  = document.querySelector('#body');
     const tr = tBody.insertRow();
     
-    console.log(tr);
     let idx = 0;
     for(let key in task)
     {
@@ -95,7 +86,6 @@ function printTask(task){
         td.innerText = value;
         idx++;
     }
-    console.log(idx);
 
     let td = tr.insertCell(idx);
     td.appendChild(createIcon("fa fa-trash" , toggleDel,task.id));
