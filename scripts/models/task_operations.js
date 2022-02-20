@@ -3,13 +3,54 @@ import {tasks} from './tasks.js';
 export const taskOperations = {
     tasksArray : [],
 
-    addTask(id,name,date,desc,url){
-        const newTask = new tasks (id,name,date,desc , url);
+    addTask(id,name,date,desc,url,marked=false){
+        const newTask = new tasks (id,name,date,desc , url,marked=false);
         this.tasksArray.push(newTask);
 
         console.log("array" , this.tasksArray);
 
         return newTask;
     },
+
+    markDelete(id){
+        for(var idx = 0 ; idx<this.tasksArray.length ; idx++)
+        {
+            if(this.tasksArray[idx].id == id)
+            {
+                this.tasksArray[idx].marked = !this.tasksArray[idx].marked;
+            }
+        }
+
+        console.log(this.tasksArray);
+        
+
+        // this.tasksArray = this.tasksArray.filter((tasks)=>!tasks.marked)
+
+    },
+
+    countMarked(){
+    //    return this.tasksArray = this.tasksArray.filter((tasks)=>tasks.marked);
+        var count = 0;
+        for(var idx = 0 ; idx<this.tasksArray.length ; idx++)
+        {
+            if(this.tasksArray[idx].marked===true)
+            {
+                count++;
+            }
+        }
+
+        return count;
+    },
+
+    countUnmarked()
+    {
+        return this.tasksArray.length - this.countMarked();
+    },
+
+    deleteTask()
+    {
+        this.tasksArray = this.tasksArray.filter((tasksArray)=>!tasksArray.marked);
+        return this.tasksArray;
+    }
 
 }
