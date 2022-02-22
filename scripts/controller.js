@@ -77,6 +77,10 @@ function printTask(task){
     let idx = 0;
     for(let key in task)
     {
+        if(typeof(task[key])==="function")
+        {
+            continue;
+        }
         if(key=="marked")
         {
             continue;

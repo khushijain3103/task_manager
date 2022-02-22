@@ -8,3 +8,7 @@ export function tasks(id,name,date,desc,url,marked=false){
     this.marked = marked;
 
 }
+tasks.prototype.toggle= function()
+{
+    this.marked = !this.marked;
+};
