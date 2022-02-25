@@ -5,6 +5,18 @@ window.addEventListener('load', eventbinder);
 function eventbinder(){
     document.querySelector('#add').addEventListener('click', add);
     document.querySelector('#delete').addEventListener('click',deleteTask);
+    document.querySelector("#clearAll").addEventListener('click',clearall);
+    document.querySelector('#search').addEventListener('click',searchTask);
+}
+
+function searchTask(){
+    // const task = taskOperations.searchTask();
+    const div = document.createElement('div');
+    const input = document.createElement('input');
+    div.append(input);
+    console.log(div);
+    document.querySelector('#dialogueBox').appendChild(div);
+
 }
 
 function deleteTask(){
@@ -67,6 +79,7 @@ function add(){
 
     printTask(task);
     countOperations();
+    clearall();
    
 }
 
@@ -96,3 +109,7 @@ function printTask(task){
     td.appendChild(createIcon("fa fa-pencil-square-o" , edit,task.id));
   
 }
+
+const clearall=()=>{
+    document.querySelectorAll(".form-control").forEach((txtboxes)=>txtboxes.value=' ');
+};

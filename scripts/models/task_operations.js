@@ -15,6 +15,12 @@ export const taskOperations = {
         return this.tasksArray;
     },
 
+    searchTask(name)
+    {
+        let task = this.tasksArray.find((tasksArray)=>tasksArray.name==name);
+        return task;
+    },
+
     markDelete(id){
         // for(var idx = 0 ; idx<this.tasksArray.length ; idx++)
         // {
@@ -55,3 +61,4 @@ export const taskOperations = {
     
 
 }
+
