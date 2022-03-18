@@ -28,7 +28,16 @@ function saveTask(){
     
 
 function loadTask(){
-
+    if(window.localStorage)
+    {
+        let tasks = JSON.parse(localStorage.tasks);
+        taskOperations.tasksArray = tasks;
+        countOperations();
+        printTasks(taskOperations.tasksArray);
+    }
+    else{
+        showAlert("Browser is outdated. Please update your browser");
+    }
 }
 
 function clearSearch(){

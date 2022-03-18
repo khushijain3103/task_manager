@@ -3,5 +3,5 @@ export function showAlert(message){
     div.className = "alert alert-info";
     div.innerHTML = message + 
                     '<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>';
-    document.querySelector('#liveAlertPlaceholder').append('div');                
+    document.querySelector('#liveAlertPlaceholder').append(div);                
 }
