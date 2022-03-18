@@ -1,3 +1,10 @@
 .hand{
     cursor: pointer;
 }
+.searchDiv{
+    /* display: flex;
+    flex-direction: row; */
+    /* width: 40vw;
+    height: 50vh; */
+    border: solid black;
+}

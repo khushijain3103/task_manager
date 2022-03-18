@@ -1,4 +1,5 @@
 import {taskOperations} from './models/task_operations.js';
+import {showAlert} from '../utils/dialogue.js';
 
 window.addEventListener('load', eventbinder);
 
@@ -7,16 +8,72 @@ function eventbinder(){
     document.querySelector('#delete').addEventListener('click',deleteTask);
     document.querySelector("#clearAll").addEventListener('click',clearall);
     document.querySelector('#search').addEventListener('click',searchTask);
+    document.querySelector('#clear').addEventListener('click',clearSearch);
+    document.querySelector('#save').addEventListener('click',saveTask);
+    document.querySelector('#load').addEventListener('click',loadTask);
 }
 
-function searchTask(){
-    // const task = taskOperations.searchTask();
+function saveTask(){
+    let tasks = taskOperations.tasksArray;
+    console.log(JSON.stringify(tasks));
+    if(window.localStorage)
+    {
+        localStorage.tasks = JSON.stringify(tasks);
+        showAlert("Tasks Saved Successfully");
+    }
+    else{
+        showAlert("Browser is outdated. Please update your browser");
+    }
+}
+    
+
+function loadTask(){
+
+}
+
+function clearSearch(){
+    const tBody  = document.querySelector('#body');
+    tBody.innerHTML = " ";
+
+    printTasks(taskOperations.tasksArray);
+}
+
+function searchBox(){
     const div = document.createElement('div');
+    div.classList = "searchDiv";
     const input = document.createElement('input');
+    input.classList = "searchInput";
     div.append(input);
     console.log(div);
     document.querySelector('#dialogueBox').appendChild(div);
 
+    const iTag = document.createElement('i');
+    console.log(iTag);
+    iTag.className = "fa fa-search hand";
+    iTag.id="icon";
+    div.appendChild(iTag);
+
+}
+
+function searchIcon()
+{
+    const name = document.querySelector('.searchInput').value;
+    console.log(name);
+    const task = taskOperations.searchTask(name);
+    console.log(task);
+    // const tr = name.parentNode.parentNode;
+    // tr.classList = "alert-success";
+    const tBody  = document.querySelector('#body');
+    tBody.innerHTML = " ";
+    printTask(task);
+
+    
+}
+
+function searchTask(){
+    // const task = taskOperations.searchTask();
+    searchBox();
+    document.querySelector("#icon").addEventListener('click',searchIcon);
 }
 
 function deleteTask(){
@@ -57,6 +114,7 @@ function toggleDel()
 function edit()
 {
     console.log("edit...");
+    
 }
 
 function createIcon(className,fn, id){

@@ -21,6 +21,7 @@ export const taskOperations = {
         return task;
     },
 
+
     markDelete(id){
         // for(var idx = 0 ; idx<this.tasksArray.length ; idx++)
         // {
